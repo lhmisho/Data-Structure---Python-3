@@ -2,8 +2,8 @@ class Node:
     def __init__(self, data = None, next = None):
         self.data = data
         self.next = next
-        def __repr__(self):
-            return repr(self.data)
+    def __repr__(self):
+        return repr(self.data)
 
 class LinkList:
     def __init__(self):
@@ -17,11 +17,11 @@ class LinkList:
             nodes.append(repr(current_node))
             current_node = current_node.next
 
-            # we will print all node as a string and between two node we devided them by comma
-            return ",".join(nodes)
+        # we will print all node as a string and between two node we devided them by comma
+        return ",".join(nodes)
 
     # adding value at end of the list
-    def append(self):
+    def append(self, data):
         node = Node(data)
         if self.head.next is None:
             self.head.next = node
@@ -33,8 +33,8 @@ class LinkList:
         current_node.next = node
 
     # adding value at first
-    def prepend(self):
-        node = None(data, self.head.next)
+    def prepend(self, data):
+        node = Node(data, self.head.next)
         self.head.next = node
 
     def insert(self, data, new_data):
@@ -62,7 +62,7 @@ class LinkList:
 
     def remove(self, item):
         previous_node   = self.head
-        current_node    = self.head.next
+        current_node    = previous_node.next
 
         while current_node:
             if current_node.data == item:
@@ -74,6 +74,11 @@ class LinkList:
             return None
 
         if self.head == previous_node:
-            self.head = current_node.next
+            self.head.next = current_node.next
         else:
             previous_node.next = current_node.next
+
+if __name__=="__main__":
+    li = LinkList()
+
+    li.append(5)
